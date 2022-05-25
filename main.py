@@ -47,4 +47,3 @@ def shutter_video(video_duration_in_seconds, sleep_duration_in_minutes):
         go_pro.shutter("0")  # turns off video
         time.sleep(sleep_duration_in_minutes * 60)
 
-
