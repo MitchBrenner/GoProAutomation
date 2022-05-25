@@ -23,8 +23,11 @@ def take_photo_transfer_delete():
 def timelapse(interval):
     i = 0
     while True:
+        # takes photo and downloads it with custom filename
         go_pro.downloadLastMedia(go_pro.take_photo(timer=interval), custom_filename="photo" + str(i) + '.JPG')
-        shutil.move('./photo' + str(i) + '.JPG', './images/photo' + str(i) + '.JPG')
+        shutil.move('./photo' + str(i) + '.JPG', './images/photo' + str(i) + '.JPG')  # moves file from this
+        # directory to new directory
+        go_pro.delete('last')
         i += 1
 
 
