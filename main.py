@@ -20,11 +20,17 @@ def take_photo_transfer_delete():
     go_pro.delete("last")
 
 
-def timelapse(interval):
+def timelapse(interval_in_minutes):
+    if type(interval_in_minutes) != int :
+        print("Argument must be an integer")
+        return
+
+    go_pro.mode("1")  # Change Gopro mode to photo
     i = 0
     while True:
         # takes photo and downloads it with custom filename
-        go_pro.downloadLastMedia(go_pro.take_photo(timer=interval), custom_filename="photo" + str(i) + '.JPG')
+        go_pro.downloadLastMedia(go_pro.take_photo(timer=interval_in_minutes * 60), custom_filename="photo"
+                                                                                                    + str(i) + '.JPG')
         shutil.move('./photo' + str(i) + '.JPG', './images/photo' + str(i) + '.JPG')  # moves file from this
         # directory to new directory
         go_pro.delete('last')
